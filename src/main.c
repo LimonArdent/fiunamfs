@@ -1,18 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
-#include "defs.h"
+
+#include "error.h"
+#include "fs.h"
 
 /*
-Enteros: 4b, le
-0-8: FiUnamFS
-10-14: Versión: 24-2
-20-35: Etiqueta
-40-44: Tamaño de cluster
-45-49: Número de clusters que mide el directorio
-50-54: Número de clusters que mide la unidad completa
-
 Directorio:
 0: Tipo: archivo0x2d, vacio: 0x2f
 1-15: Nombre de archivo
@@ -23,8 +15,6 @@ Directorio:
 52-64: reservado
 
 Entradas no utilizadas: ###############
-Cada cluster mide 4 sectores, cada sector mide 512 bytes
-ver htons ntohs
 */
 
 
@@ -36,8 +26,8 @@ int main (int argc, char* argv[]){
     }
 
     // Comprobar abrir
-    FILE *img = fopen(argv[1], "rb+");
-    if (img == NULL) fiunamfs_check_stderr();
+    FILE *img = fiunamfs_open_fs(argv[1]);
+    if (img == NULL) fiunamfs_check_err();
 
     fclose(img);
     exit(EXIT_SUCCESS);

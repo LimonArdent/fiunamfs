@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <time.h>
 
+#include "error.h"
+
 typedef struct {
     unsigned char tipo;
     char nombre[15];

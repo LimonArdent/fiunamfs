@@ -1,6 +1,6 @@
-#include "defs.h"
+#include "error.h"
 
-void fiunamfs_check_stderr(){
+void fiunamfs_check_err(){
     switch (errno){
         case 0:
             return;
@@ -13,22 +13,20 @@ void fiunamfs_check_stderr(){
         case 21:
             fputs("Intentas abrir una carpeta", stderr);
             break;
-        default:
-            fputs("Hubo un error al abrir el archivo", stderr);
-    }
-    exit(EXIT_FAILURE);
-}
-
-void fiunamfs_check_err(int err){
-    switch (err){
-        case 0:
-            return;
         case ERR_NOFS:
-            puts("El archivo leído no es un sistema de archivos FiUnamFS"); 
+            puts("El archivo leído no es un sistema de archivos FiUnamFS");
             break;
         case ERR_NOFSVER:
             puts("La versión del sistema de archivos del disco no es compatible con la versión implementada");
             break;
+        case ERR_BADDRVSZ:
+            puts("El tamaño de unidad informado en el sistema de archivos no corresponde con la realidad");
+            break;
+        case ERR_BADDIRITEM:
+            puts("Una entrada del directorio tiene un tipo de inodo no reconocido");
+            break;
+        default:
+            fputs("Hubo un error al abrir el archivo", stderr);
     }
     exit(EXIT_FAILURE);
 }

@@ -1,6 +1,6 @@
 /*
- * File: defs.h
- * Incluye definiciones misceláneas
+ * File: error.h
+ * Incluye funciones y macros para tratar con errores
  */
 
 #ifndef FIUNAMFS_DEFS
@@ -10,18 +10,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ERR_NOFS 1
-#define ERR_NOFSVER 2
-
-/*
- * Muestra y trata errores POSIX estándar
- */
-void fiunamfs_check_stderr();
+#define ERR_NOFS 201
+#define ERR_NOFSVER 202
+#define ERR_BADDRVSZ 203
+#define ERR_BADDIRITEM 204
 
 /*
  * Muestra y trata errores FiUnamFS
  * @param err Error devuelto por una función FiUnamFS
  */
-void fiunamfs_check_err(int err);
+void fiunamfs_check_err();
 
 #endif
