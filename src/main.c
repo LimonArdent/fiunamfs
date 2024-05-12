@@ -2,23 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include <time.h>
-
-typedef struct {
-    char etiqueta[16];
-    uint32_t tam_cluster;
-    uint32_t clusters_directorio;
-    uint32_t clusters_unidad;
-} fs_datos;
-
-typedef struct {
-    unsigned char tipo;
-    char nombre[15];
-    uint32_t tamano;
-    uint32_t cluster;
-    time_t f_creacion;
-    time_t f_modificacion;
-} fs_entdir;
+#include "defs.h"
 
 /*
 Enteros: 4b, le
@@ -45,48 +29,16 @@ ver htons ntohs
 
 
 int main (int argc, char* argv[]){
-    // Buffer para lecturas
-    char* buf = (char*) calloc(1, 16);
-    if (buf == NULL){
-        puts("Error de memoria");
-        free(buf);
-        exit(EXIT_FAILURE);
-    }
-
     // Necesita pasar la ruta de archivo como parámetro
     if (argc < 2){
         puts("Necesitas parámetros");
-        free(buf);
         exit(EXIT_FAILURE);
     }
 
     // Comprobar abrir
     FILE *img = fopen(argv[1], "rb+");
-    if (img == NULL){
-        puts("El archivo no pudo ser abierto");
-        free(buf);
-        exit(EXIT_FAILURE);
-    }
-
-    // Probar número mágico
-    fread(buf, 9, 1, img);
-    if (strncmp(buf, "FiUnamFS", 8) != 0){
-        puts("El archivo leído no es un sistema de archivos FiUnamFS");
-        free(buf);
-        exit(EXIT_FAILURE);
-    }
-
-    // Comprobar versión del sistema de archivos
-    fgetc(img);
-    fread(buf, 5, 1, img);
-    printf("%s\n", buf);
-    if (strncmp(buf, "24-2", 4) != 0){
-        puts("La versión del sistema de archivos del disco no es compatible con la versión implementada");
-        free(buf);
-        exit(EXIT_FAILURE);
-    }
+    if (img == NULL) fiunamfs_check_stderr();
 
     fclose(img);
-    free(buf);
     exit(EXIT_SUCCESS);
 }
