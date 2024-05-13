@@ -6,6 +6,7 @@
 #ifndef FIUNAMFS_FS
 #define FIUNAMFS_FS
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,6 +14,7 @@
 #include <time.h>
 
 #include "error.h"
+#include "misc.h"
 
 typedef struct {
     char etiqueta[16]; /**< Etiqueta de la unidad */

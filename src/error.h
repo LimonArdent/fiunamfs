@@ -14,6 +14,7 @@
 #define ERR_NOFSVER 202
 #define ERR_BADDRVSZ 203
 #define ERR_BADDIRITEM 204
+#define ERR_OVERCLUST 205
 
 /*
  * Muestra y trata errores FiUnamFS

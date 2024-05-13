@@ -25,6 +25,9 @@ void fiunamfs_check_err(){
         case ERR_BADDIRITEM:
             puts("Una entrada del directorio tiene un tipo de inodo no reconocido");
             break;
+        case ERR_OVERCLUST:
+            puts("Un cluster pertenece a más de una entrada de directorio");
+            break;
         default:
             fputs("Hubo un error al abrir el archivo", stderr);
     }
