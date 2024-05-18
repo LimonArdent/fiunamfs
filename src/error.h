@@ -16,6 +16,7 @@
 #define ERR_BADDIRITEM 204
 #define ERR_OVERCLUST 205
 #define ERR_MEMORY 206
+#define ERR_NOFILE 207 // Hay qué diferenciar errores del sistema de archivos host y el del archivo
 
 /*
  * Muestra y trata errores FiUnamFS

@@ -32,6 +32,6 @@ int fiunamfs_rm(FILE* imagen, const char* ruta){
             continue;
         }
     }
-    errno = ENOENT;
+    errno = ERR_NOFILE;
     return 1;
 }

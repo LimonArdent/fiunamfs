@@ -5,7 +5,7 @@ void fiunamfs_check_err(){
         case 0:
             return;
         case 2:
-            fputs("El archivo no existe\n", stderr);
+            fputs("El archivo no existe en el equipo\n", stderr);
             break;
         case 13:
             fputs("No tienes permisos para abrir ese archivo\n", stderr);
@@ -30,6 +30,9 @@ void fiunamfs_check_err(){
             break;
         case ERR_MEMORY:
             fputs("Hubo un error al momento de pedir memoria\n", stderr);
+            break;
+        case ERR_NOFILE:
+            fputs("El archivo no existe en el sistema de archivos\n", stderr);
             break;
         default:
             fputs("Hubo un error al abrir el archivo\n", stderr);

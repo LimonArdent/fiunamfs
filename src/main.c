@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "cp.h"
 #include "error.h"
 #include "fs.h"
 #include "ls.h"
@@ -15,10 +16,10 @@ int main (int argc, char* argv[]){
         printf("Uso: %s <comando> <imagen> [parámetros]\n", argv[0]);
         puts("Comandos disponibles:");
         puts("  ayuda - muestra esta ayuda");
-        puts("  ls [archivo] - lista los archivos del sistema de archivos");
-        puts("  cpo [archivo] - copia un archivo del sistema de archivos hacia tu equipo");
-        puts("  cpi [archivo] - copia un archivo de tu equipo hacia el sistema de archivos");
-        puts("  rm [archivo] - elimina un archivo del sistema de archivos");
+        puts("  ls [sistema] - lista los archivos del sistema de archivos");
+        puts("  cpo [sistema] [origen] [destino] - copia un archivo del sistema de archivos hacia tu equipo");
+        puts("  cpi [sistema] [origen] [destino] - copia un archivo de tu equipo hacia el sistema de archivos");
+        puts("  rm [sistema] [archivo] - elimina un archivo del sistema de archivos");
         exit(EXIT_SUCCESS);
     } else if (argc < 3){
         fputs("Necesitas especificar la ruta de la imagen\n", stderr);
@@ -33,13 +34,22 @@ int main (int argc, char* argv[]){
         fiunamfs_ls(imagen);
     } else if (!strcmp(argv[1], "cpo")){
         if (argc < 4){
-            fputs("Necesitas especificar el nombre del archivo a copiar", stderr);
+            fputs("Necesitas especificar el nombre del archivo a copiar y el destino\n", stderr);
+            fclose(imagen);
+            exit(EXIT_FAILURE);
+        } else if (argc < 5){
+            fputs("Necesitas especificar el destino del archivo a copiar\n", stderr);
             fclose(imagen);
             exit(EXIT_FAILURE);
         }
+        if (fiunamfs_cp_fuera(imagen, argv[3], argv[4])) fiunamfs_check_err();
     } else if (!strcmp(argv[1], "cpi")){
         if (argc < 4){
-            fputs("Necesitas especificar la ruta del archivo a copiar", stderr);
+            fputs("Necesitas especificar la ruta del archivo a copiar\n", stderr);
+            fclose(imagen);
+            exit(EXIT_FAILURE);
+        } else if (argc < 5){
+            fputs("Necesitas especificar el nombre del archivo a guardar", stderr);
             fclose(imagen);
             exit(EXIT_FAILURE);
         }

@@ -45,6 +45,6 @@ int fiunamfs_cp_fuera(FILE* imagen, const char* ruta_dentro, const char* ruta_fu
             continue;
         }
     }
-    errno = ENOENT;
+    errno = ERR_NOFILE;
     return 1;
 }
