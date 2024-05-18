@@ -25,7 +25,7 @@ int main (int argc, char* argv[]){
     }
 
     // Comprobar imagen de disco
-    FILE *imagen = fiunamfs_open_fs(argv[1]);
+    FILE *imagen = fiunamfs_open_fs(argv[2]);
     if (imagen == NULL) fiunamfs_check_err();
 
     if (!strcmp(argv[1], "ls")){
