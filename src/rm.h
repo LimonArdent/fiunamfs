@@ -6,6 +6,7 @@
 #ifndef FIUNAMFS_RM
 #define FIUNAMFS_RM
 
+#include <errno.h>
 #include <stdio.h>
 #include <string.h>
 

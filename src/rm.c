@@ -15,17 +15,13 @@ int fiunamfs_rm(FILE* imagen, const char* ruta){
             // Leer nombre de archivo
             memset(buf, 0, 16);
             fread(buf, 1, 15, imagen);
-            printf("%-20s", buf);
 
             // Normalizar espacios al final y comparar
-            for (int j=15; j>=0 && (buf[j] == ' ' || buf[j] == 0); j--){
-              buf[j] = 0;
-            }
+            for (int j=15; j>=0 && (buf[j] == ' ' || buf[j] == 0); j--) buf[j] = 0;
             if (!strcmp(buf, ruta)){
                 fseek(imagen, -16, SEEK_CUR);
                 fwrite("/###############", 1, 16, imagen);
                 return 0;
-                puts("Lirio");
             }
 
             fseek(imagen, 47, SEEK_CUR);
@@ -35,5 +31,6 @@ int fiunamfs_rm(FILE* imagen, const char* ruta){
             continue;
         }
     }
+    errno = ENOENT;
     return 1;
 }
