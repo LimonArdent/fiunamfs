@@ -28,6 +28,9 @@ void fiunamfs_check_err(){
         case ERR_OVERCLUST:
             puts("Un cluster pertenece a más de una entrada de directorio");
             break;
+        case ERR_MEMORY:
+            puts("Hubo un error al momento de pedir memoria");
+            break;
         default:
             fputs("Hubo un error al abrir el archivo", stderr);
     }

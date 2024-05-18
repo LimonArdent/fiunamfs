@@ -33,8 +33,8 @@ FILE* fiunamfs_open_fs(const char* ruta);
 /*
  * Devuelve una estructura con información sobre el sistema de archivos
  * @param imagen Puntero al sistema de archivos
- * @return 0 si la tarea tuvo éxito, 1 si no
+ * @return un puntero con la estructura con los datos del sistema de archivos, o NULL si hubo un error
  */
-int fiunamfs_stat_fs(FILE* imagen);
+fiunamfs_fs* fiunamfs_stat_fs(FILE* imagen);
 
 #endif
