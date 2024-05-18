@@ -8,10 +8,7 @@
 int main (int argc, char* argv[]){
     // Necesita pasar la ruta de archivo como parámetro
     if (argc < 2){
-        fputs("Necesitas especificar un comando", stderr);
-        exit(EXIT_FAILURE);
-    } else if (argc < 3){
-        fputs("Necesitas especificar la ruta de la imagen", stderr);
+        fputs("Necesitas especificar un comando\n", stderr);
         exit(EXIT_FAILURE);
     } else if (!strcmp(argv[1], "ayuda")){
         printf("Uso: %s <comando> <imagen> [parámetros]\n", argv[0]);
@@ -22,6 +19,9 @@ int main (int argc, char* argv[]){
         puts("  cpi - copia un archivo de tu equipo hacia el sistema de archivos");
         puts("  rm - elimina un archivo del sistema de archivos");
         exit(EXIT_SUCCESS);
+    } else if (argc < 3){
+        fputs("Necesitas especificar la ruta de la imagen\n", stderr);
+        exit(EXIT_FAILURE);
     }
 
     // Comprobar imagen de disco

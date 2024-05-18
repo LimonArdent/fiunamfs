@@ -5,34 +5,34 @@ void fiunamfs_check_err(){
         case 0:
             return;
         case 2:
-            fputs("El archivo no existe", stderr);
+            fputs("El archivo no existe\n", stderr);
             break;
         case 13:
-            fputs("No tienes permisos para abrir ese archivo", stderr);
+            fputs("No tienes permisos para abrir ese archivo\n", stderr);
             break;
         case 21:
-            fputs("Intentas abrir una carpeta", stderr);
+            fputs("Intentas abrir una carpeta\n", stderr);
             break;
         case ERR_NOFS:
-            puts("El archivo leído no es un sistema de archivos FiUnamFS");
+            fputs("El archivo leído no es un sistema de archivos FiUnamFS\n", stderr);
             break;
         case ERR_NOFSVER:
-            puts("La versión del sistema de archivos del disco no es compatible con la versión implementada");
+            fputs("La versión del sistema de archivos del disco no es compatible con la versión implementada\n", stderr);
             break;
         case ERR_BADDRVSZ:
-            puts("El tamaño de unidad informado en el sistema de archivos no corresponde con la realidad");
+            fputs("El tamaño de unidad informado en el sistema de archivos no corresponde con la realidad\n", stderr);
             break;
         case ERR_BADDIRITEM:
-            puts("Una entrada del directorio tiene un tipo de inodo no reconocido");
+            fputs("Una entrada del directorio tiene un tipo de inodo no reconocido\n", stderr);
             break;
         case ERR_OVERCLUST:
-            puts("Un cluster pertenece a más de una entrada de directorio");
+            fputs("Un cluster pertenece a más de una entrada de directorio\n", stderr);
             break;
         case ERR_MEMORY:
-            puts("Hubo un error al momento de pedir memoria");
+            fputs("Hubo un error al momento de pedir memoria\n", stderr);
             break;
         default:
-            fputs("Hubo un error al abrir el archivo", stderr);
+            fputs("Hubo un error al abrir el archivo\n", stderr);
     }
     exit(EXIT_FAILURE);
 }
