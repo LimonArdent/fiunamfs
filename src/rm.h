@@ -7,6 +7,9 @@
 #define FIUNAMFS_RM
 
 #include <stdio.h>
+#include <string.h>
+
+#include "fs.h"
 
 /*
  * Elimina un archivo dentro del sistema de archivos

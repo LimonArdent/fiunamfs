@@ -4,6 +4,7 @@
 #include "error.h"
 #include "fs.h"
 #include "ls.h"
+#include "rm.h"
 
 int main (int argc, char* argv[]){
     // Necesita pasar la ruta de archivo como parámetro
@@ -33,6 +34,7 @@ int main (int argc, char* argv[]){
     } else if (!strcmp(argv[1], "cpo")){
     } else if (!strcmp(argv[1], "cpi")){
     } else if (!strcmp(argv[1], "rm")){
+        fiunamfs_rm(imagen, argv[3]);
     } else {
         fprintf(stderr, "No existe el comando %s\n", argv[1]);
     }
