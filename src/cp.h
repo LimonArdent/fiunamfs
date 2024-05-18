@@ -6,7 +6,13 @@
 #ifndef FIUNAMFS_CP
 #define FIUNAMFS_CP
 
+#include <errno.h>
 #include <stdio.h>
+#include <string.h>
+
+#include "error.h"
+#include "fs.h"
+#include "misc.h"
 
 /*
  * Copia un archivo dentro del sistema de archivos hacia otro sistema de archivos
