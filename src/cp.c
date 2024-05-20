@@ -72,7 +72,7 @@ int fiunamfs_cp_dentro(FILE* imagen, const char* ruta_dentro, const char* ruta_f
         fiunamfs_bools_set(clusters, i, true);
 
     // Bandera de disponibilidad en directorio
-    int cluster_disponible = -1;
+    int entrada_disponible = -1;
 
     fseek(imagen, str_datos->tam_cluster, SEEK_SET);
     // ...y rellenarlo
@@ -88,16 +88,17 @@ int fiunamfs_cp_dentro(FILE* imagen, const char* ruta_dentro, const char* ruta_f
                 bool val_cluster = fiunamfs_bools_get(clusters, arc_cluster+j);
                 if (!val_cluster) fiunamfs_bools_set(clusters, arc_cluster+j, true);
             }
+            fseek(imagen, 40, SEEK_CUR);
         } else if (arc_tipo == 0x2f){
             // Entrada vacía
-            if (cluster_disponible == -1) cluster_disponible = i;
+            if (entrada_disponible == -1) entrada_disponible = i;
             fseek(imagen, 63, SEEK_CUR);
             continue;
         }
     }
 
     // Ver si hay espacio
-    if (cluster_disponible == -1){
+    if (entrada_disponible == -1){
         errno = ERR_FULLDIR;
         return 1;
     }
@@ -121,7 +122,7 @@ int fiunamfs_cp_dentro(FILE* imagen, const char* ruta_dentro, const char* ruta_f
             for (size_t j=0; j<origen_tam; j++) fputc(fgetc(origen), imagen);
 
             // Escribir la entrada en el directorio
-            fseek(imagen, (str_datos->tam_cluster) + (64*i), SEEK_SET);
+            fseek(imagen, (str_datos->tam_cluster) + (64*entrada_disponible), SEEK_SET);
             //char* nombre = strrchr(ruta_fuera, '/');
             /// Tipo de archivo
             fputc('-', imagen);
