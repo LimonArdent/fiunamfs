@@ -7,8 +7,10 @@
 #define FIUNAMFS_CP
 
 #include <errno.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "error.h"
 #include "fs.h"

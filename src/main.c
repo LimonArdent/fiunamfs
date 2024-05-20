@@ -53,6 +53,7 @@ int main (int argc, char* argv[]){
             fclose(imagen);
             exit(EXIT_FAILURE);
         }
+        if (fiunamfs_cp_dentro(imagen, argv[4], argv[3])) fiunamfs_check_err();
     } else if (!strcmp(argv[1], "rm")){
         if (argc < 4){
             fputs("Necesitas especificar el nombre del archivo a borrar\n", stderr);

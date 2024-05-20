@@ -34,10 +34,17 @@ void fiunamfs_bools_set(char* a, size_t p, bool v);
 bool fiunamfs_bools_get(char* a, size_t p);
 
 /*
- * Lee un buffer y extrae un entero sin signo de 32 bits
+ * Lee un buffer little-endian y extrae un entero sin signo de 32 bits
  * @param a Buffer de caracteres
  * @return el valor
  */
 uint32_t fiunamfs_int32(char* a);
+
+/*
+ * Lee un entero sin signo de 32 bits, y escribe en un buffer su representación little-endian
+ * @param val Entero sin signo de 32 bits
+ * @param buf Buffer al cual escribir
+ */
+void fiunamfs_int32_dump(uint32_t val, unsigned char* buf);
 
 #endif

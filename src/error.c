@@ -34,6 +34,9 @@ void fiunamfs_check_err(){
         case ERR_NOFILE:
             fputs("El archivo no existe en el sistema de archivos\n", stderr);
             break;
+        case ERR_FULLDIR:
+            fputs("El directorio está lleno\n", stderr);
+            break;
         default:
             fputs("Hubo un error al abrir el archivo\n", stderr);
     }
